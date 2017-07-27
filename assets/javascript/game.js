@@ -11,12 +11,6 @@ document.onkeyup = function(event) {
       computerLetter.length)];
   		console.log("Wins: " + wins + " Losses: " + losses + " GuessesLeft: " + guessesLeft + " Your guesses so far: " + yourGuessesSoFar + " Computer picked: " + computerGuess);
 
-    yourGuessesSoFar.push(userGuess);
-
-   	if (yourGuessesSoFar.indexOf(userGuess) < 0 && computerLetter.indexOf(userGuess) >= 0) {
-   		yourGuessesSoFar[yourGuessesSoFar.length]=userGuess;
-   		guessesLeft--;
-   	}
 
 	if (userGuess === computerGuess) {
 	    wins++;
@@ -26,6 +20,11 @@ document.onkeyup = function(event) {
       	computerLetter.length)];
   		console.log("Wins: " + wins + " Losses: " + losses + " GuessesLeft: " + guessesLeft + " Your guesses so far: " + yourGuessesSoFar + " Computer picked: " + computerGuess);
   		}
+
+  	if (userGuess !== computerGuess){
+  		yourGuessesSoFar.push(userGuess);
+  		guessesLeft--;
+  	}	
 	
 	if (guessesLeft === 0) {
 		losses++;
@@ -39,11 +38,13 @@ document.onkeyup = function(event) {
 
 
 	var html =
+	"<p><h1>The Psychic Game</h1></p>" + 
+	"<p><h4>Guess what letter I'm thinking of</h4></p>" +
 	"<p>wins: " + wins + "</p>" +
 	"<p>losses: " + losses + "</p>" +
 	"<p>Guesses Left: " + guessesLeft + "</p>" +
 	"<p>Your guesses so far: " + yourGuessesSoFar + "</p>";
 
-	document.querySelector("#game").innerHTML = html;    
+	document.querySelector("#game").innerHTML = html;
     
 }//document.onkeyup
