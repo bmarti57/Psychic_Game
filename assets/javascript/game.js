@@ -2,27 +2,48 @@ var computerLetter = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l"
 
 var wins = 0;
 var losses = 0;
+var guessesLeft = 10;
+var yourGuessesSoFar = []
 
 document.onkeyup = function(event) {
     var userGuess = event.key;
-    var computerGuess = computerLetter[Math.floor(Math.random() * computerLetter.length)]};
+    var computerGuess = computerLetter[Math.floor(Math.random() * 
+      computerLetter.length)];
+  		console.log("Wins: " + wins + " Losses: " + losses + " GuessesLeft: " + guessesLeft + " Your guesses so far: " + yourGuessesSoFar + " Computer picked: " + computerGuess);
 
-var userGuess = [];    
+    yourGuessesSoFar.push(userGuess);
 
-if (userGuess === computerGuess); {
-	wins++;
-} 
+   	if (yourGuessesSoFar.indexOf(userGuess) < 0 && computerLetter.indexOf(userGuess) >= 0) {
+   		yourGuessesSoFar[yourGuessesSoFar.length]=userGuess;
+   		guessesLeft--;
+   	}
 
-else if (userGuess.push({userGuess})) for(var i = 0; i = 10; i++);
+	if (userGuess === computerGuess) {
+	    wins++;
+		guessesLeft = 10;
+		yourGuessesSoFar = [];
+ 		var computerGuess = computerLetter[Math.floor(Math.random() * 
+      	computerLetter.length)];
+  		console.log("Wins: " + wins + " Losses: " + losses + " GuessesLeft: " + guessesLeft + " Your guesses so far: " + yourGuessesSoFar + " Computer picked: " + computerGuess);
+  		}
+	
+	if (guessesLeft === 0) {
+		losses++;
+		guessesLeft = 10;
+		yourGuessesSoFar = [];
+ 		var computerGuess = computerLetter[Math.floor(Math.random() * 
+      	computerLetter.length)];
+  		console.log("Wins: " + wins + " Losses: " + losses + " GuessesLeft: " + guessesLeft + " Your guesses so far: " + yourGuessesSoFar + " Computer picked: " + computerGuess);
+  		}
+	
 
-else if (i = 10) {losses++};
 
-var html =
+	var html =
+	"<p>wins: " + wins + "</p>" +
+	"<p>losses: " + losses + "</p>" +
+	"<p>Guesses Left: " + guessesLeft + "</p>" +
+	"<p>Your guesses so far: " + yourGuessesSoFar + "</p>";
 
-"<p>wins: " + wins + "</p>" +
-"<p>losses: " + losses + "</p>" +
-"<p>Guesses Left: " + i + "</p>" +
-"<p>Your guesses so far: " + userGuess + "</p>";
-
-document.querySelector("#game").innerHTML = html;
-
+	document.querySelector("#game").innerHTML = html;    
+    
+}//document.onkeyup
